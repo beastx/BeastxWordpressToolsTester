@@ -48,9 +48,38 @@ Class BeastxWordpressToolsTester extends BeastxPlugin {
         $this->testRegisterExternalAssets();
         $this->testRegisterInlineAssets();
         
-        $this->postType = new ProjectPostType();
-        debug($this->postType);
+        //~ $this->postType = new ProjectPostType();
+        //~ debug($this->postType);
+        
+        $this->registerMenu(
+            'projects',
+            'Projects',
+            array(
+                array('id' => 'pepe1', 'title' => 'Pepe Title 1', 'callback' => array(&$this, 'showPepe1Page')),
+                array('id' => 'pepe2', 'title' => 'Pepe Title 2', 'callback' => array(&$this, 'showPepe2Page'))
+            )
+        );
+        $this->registerSubMenu(
+            'pepe3',
+            'comments',
+            'Pepe 3',
+            'Pepe 3',
+            array(&$this, 'showPepe3Page')
+        );
     }
+    
+    public function showPepe1Page() {
+        echo 'pepe11111';
+    }
+    
+    public function showPepe2Page() {
+        echo 'pepe22222';
+    }
+    
+    public function showPepe3Page() {
+        echo 'pepe33333';
+    }
+    
     
     function testRegisterBuiltInAssets() {
         $this->addRowEditorAssets(array(array('section' => 'posts', 'subSection' => 'addnew')));
@@ -135,14 +164,14 @@ Class BeastxWordpressToolsTester extends BeastxPlugin {
         echo '<p>Esto es un test!</p>';
     }
     
-    public function onInit() { debug('BeastxWordpressToolsTester::onInit'); }
-    public function onAdminInit() { debug('BeastxWordpressToolsTester::onAdminInit'); }
-    public function onPluginLoad() { debug('BeastxWordpressToolsTester::onPluginLoad'); }
-    public function onPluginActivate() { debug('BeastxWordpressToolsTester::onPluginActivate'); }
-    public function onPluginDeactivate() { debug('BeastxWordpressToolsTester::onPluginDeactivate'); }
-    public function onSavePost() { debug('BeastxWordpressToolsTester::onSavePost'); }
-    public function onGetContent() { debug('BeastxWordpressToolsTester::onGetContent'); }
-    public function onGetPosts() { debug('BeastxWordpressToolsTester::onGetPosts'); }
+    //~ public function onInit() { debug('BeastxWordpressToolsTester::onInit'); }
+    //~ public function onAdminInit() { debug('BeastxWordpressToolsTester::onAdminInit'); }
+    //~ public function onPluginLoad() { debug('BeastxWordpressToolsTester::onPluginLoad'); }
+    //~ public function onPluginActivate() { debug('BeastxWordpressToolsTester::onPluginActivate'); }
+    //~ public function onPluginDeactivate() { debug('BeastxWordpressToolsTester::onPluginDeactivate'); }
+    //~ public function onSavePost() { debug('BeastxWordpressToolsTester::onSavePost'); }
+    //~ public function onGetContent() { debug('BeastxWordpressToolsTester::onGetContent'); }
+    //~ public function onGetPosts() { debug('BeastxWordpressToolsTester::onGetPosts'); }
     
 }
 
