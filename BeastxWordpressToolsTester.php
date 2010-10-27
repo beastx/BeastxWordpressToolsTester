@@ -51,6 +51,9 @@ Class BeastxWordpressToolsTester extends BeastxPlugin {
         //~ $this->postType = new ProjectPostType();
         //~ debug($this->postType);
         
+        $this->removeMenuItem('media');
+        $this->removeSubMenuItem('dashboard', 'updates');
+        
         $this->registerMenu(
             'projects',
             'Projects',
