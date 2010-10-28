@@ -31,6 +31,7 @@ if (!defined('ABSPATH')) die("Aren't you supposed to come here via WP-Admin?");
 
 require_once 'BeastxWordpressTools/includeBeastxWordpressTools.php';
 require_once 'ProjectPostType.php';
+require_once 'OptionsPage.php';
 
 if (!class_exists('BeastxWordpressToolsTester')) {
 
@@ -38,6 +39,8 @@ Class BeastxWordpressToolsTester extends BeastxPlugin {
 
     public function __construct() {
         parent::__construct();
+        $this->registerCoreBuiltInAssets();
+        $this->addWordpressCommonFiltersAndActions();
         
         $this->testRegisterPluginLinks();
         $this->testRegisterDashboardWidget();
@@ -48,8 +51,8 @@ Class BeastxWordpressToolsTester extends BeastxPlugin {
         $this->testRegisterExternalAssets();
         $this->testRegisterInlineAssets();
         
-        //~ $this->postType = new ProjectPostType();
-        //~ debug($this->postType);
+        $this->postType = new ProjectPostType();
+        debug($this->postType);
         
         $this->removeMenuItem('media');
         $this->removeSubMenuItem('dashboard', 'updates');
@@ -72,7 +75,8 @@ Class BeastxWordpressToolsTester extends BeastxPlugin {
     }
     
     public function showPepe1Page() {
-        echo 'pepe11111';
+        $page = new BeastxProjectOptionsPage();
+        $page->display();
     }
     
     public function showPepe2Page() {
